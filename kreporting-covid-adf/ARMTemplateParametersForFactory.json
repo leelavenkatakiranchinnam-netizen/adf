@@ -1,0 +1,108 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "kreporting-covid-adf"
+		},
+		"LS_BULKSQLSINK_accountKey": {
+			"value": ""
+		},
+		"LS_SLQBULKUPLOAD_password": {
+			"value": ""
+		},
+		"LS_SLQSINK_accountKey": {
+			"value": ""
+		},
+		"ls_Sqlbulkupload_password": {
+			"value": ""
+		},
+		"ls_ablob_covidreportingsa_connectionString": {
+			"value": ""
+		},
+		"ls_adls_covidreportingdl_accountKey": {
+			"value": ""
+		},
+		"ls_lookup_password": {
+			"value": ""
+		},
+		"ls_metadata_password": {
+			"value": ""
+		},
+		"ls_sqlsink_accountKey": {
+			"value": ""
+		},
+		"ls_sqlupload_password": {
+			"value": ""
+		},
+		"LS_BULKSQLSINK_properties_typeProperties_url": {
+			"value": "https://adfbanksink.dfs.core.windows.net/"
+		},
+		"LS_SLQBULKUPLOAD_properties_typeProperties_server": {
+			"value": "ANVR"
+		},
+		"LS_SLQBULKUPLOAD_properties_typeProperties_database": {
+			"value": "AdventureWorks2022"
+		},
+		"LS_SLQBULKUPLOAD_properties_typeProperties_userName": {
+			"value": "CHLVKIRAN"
+		},
+		"LS_SLQSINK_properties_typeProperties_url": {
+			"value": "https://adfbanksink.dfs.core.windows.net/"
+		},
+		"ls_Sqlbulkupload_properties_typeProperties_server": {
+			"value": "ANVR"
+		},
+		"ls_Sqlbulkupload_properties_typeProperties_database": {
+			"value": "AdventureWorks2022"
+		},
+		"ls_Sqlbulkupload_properties_typeProperties_userName": {
+			"value": "CHLVKIRAN"
+		},
+		"ls_adls_covidreportingdl_properties_typeProperties_url": {
+			"value": "https://covidreportingkdl.dfs.core.windows.net/"
+		},
+		"ls_http_opendata_ecdc_europe_eu_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com"
+		},
+		"ls_lookup_properties_typeProperties_server": {
+			"value": "ANVR"
+		},
+		"ls_lookup_properties_typeProperties_database": {
+			"value": "AdventureWorks2022"
+		},
+		"ls_lookup_properties_typeProperties_userName": {
+			"value": "CHLVKIRAN"
+		},
+		"ls_metadata_properties_typeProperties_server": {
+			"value": "ANVR"
+		},
+		"ls_metadata_properties_typeProperties_database": {
+			"value": "AdventureWorks2022"
+		},
+		"ls_metadata_properties_typeProperties_userName": {
+			"value": "CHLVKIRAN"
+		},
+		"ls_sqlsink_properties_typeProperties_url": {
+			"value": "https://adfbanksink.dfs.core.windows.net/"
+		},
+		"ls_sqlupload_properties_typeProperties_server": {
+			"value": "ANVR"
+		},
+		"ls_sqlupload_properties_typeProperties_database": {
+			"value": "AdventureWorks2022"
+		},
+		"ls_sqlupload_properties_typeProperties_userName": {
+			"value": "CHLVKIRAN"
+		},
+		"tr_ingest_hospital_admissions_data_properties_pl_Ingest_ecdc_data_parameters_sourceRelativeURL": {
+			"value": "cloudboxacademy/covid19/main/ecdc_data/hospital_admissions.csv"
+		},
+		"tr_ingest_hospital_admissions_data_properties_pl_Ingest_ecdc_data_parameters_SinkFileNAme": {
+			"value": "hospital_admissions.csv"
+		},
+		"tr_ingest_population_data_properties_typeProperties_scope": {
+			"value": "/subscriptions/f3677a1a-fe79-4011-b3fe-c84994f856b0/resourceGroups/reorting-covid-rg/providers/Microsoft.Storage/storageAccounts/covidreportingsak"
+		}
+	}
+}

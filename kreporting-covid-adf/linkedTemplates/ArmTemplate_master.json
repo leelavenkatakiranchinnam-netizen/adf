@@ -1,0 +1,293 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "kreporting-covid-adf"
+		},
+		"LS_BULKSQLSINK_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_BULKSQLSINK'"
+		},
+		"LS_SLQBULKUPLOAD_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SLQBULKUPLOAD'"
+		},
+		"LS_SLQSINK_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SLQSINK'"
+		},
+		"ls_Sqlbulkupload_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_Sqlbulkupload'"
+		},
+		"ls_ablob_covidreportingsa_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_ablob_covidreportingsa'"
+		},
+		"ls_adls_covidreportingdl_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_adls_covidreportingdl'"
+		},
+		"ls_lookup_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_lookup'"
+		},
+		"ls_metadata_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_metadata'"
+		},
+		"ls_sqlsink_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_sqlsink'"
+		},
+		"ls_sqlupload_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_sqlupload'"
+		},
+		"LS_BULKSQLSINK_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adfbanksink.dfs.core.windows.net/"
+		},
+		"LS_SLQBULKUPLOAD_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "ANVR"
+		},
+		"LS_SLQBULKUPLOAD_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AdventureWorks2022"
+		},
+		"LS_SLQBULKUPLOAD_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "CHLVKIRAN"
+		},
+		"LS_SLQSINK_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adfbanksink.dfs.core.windows.net/"
+		},
+		"ls_Sqlbulkupload_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "ANVR"
+		},
+		"ls_Sqlbulkupload_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AdventureWorks2022"
+		},
+		"ls_Sqlbulkupload_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "CHLVKIRAN"
+		},
+		"ls_adls_covidreportingdl_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://covidreportingkdl.dfs.core.windows.net/"
+		},
+		"ls_http_opendata_ecdc_europe_eu_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com"
+		},
+		"ls_lookup_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "ANVR"
+		},
+		"ls_lookup_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AdventureWorks2022"
+		},
+		"ls_lookup_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "CHLVKIRAN"
+		},
+		"ls_metadata_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "ANVR"
+		},
+		"ls_metadata_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AdventureWorks2022"
+		},
+		"ls_metadata_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "CHLVKIRAN"
+		},
+		"ls_sqlsink_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adfbanksink.dfs.core.windows.net/"
+		},
+		"ls_sqlupload_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "ANVR"
+		},
+		"ls_sqlupload_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AdventureWorks2022"
+		},
+		"ls_sqlupload_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "CHLVKIRAN"
+		},
+		"tr_ingest_hospital_admissions_data_properties_pl_Ingest_ecdc_data_parameters_sourceRelativeURL": {
+			"type": "string",
+			"defaultValue": "cloudboxacademy/covid19/main/ecdc_data/hospital_admissions.csv"
+		},
+		"tr_ingest_hospital_admissions_data_properties_pl_Ingest_ecdc_data_parameters_SinkFileNAme": {
+			"type": "string",
+			"defaultValue": "hospital_admissions.csv"
+		},
+		"tr_ingest_population_data_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/f3677a1a-fe79-4011-b3fe-c84994f856b0/resourceGroups/reorting-covid-rg/providers/Microsoft.Storage/storageAccounts/covidreportingsak"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "kreporting-covid-adf_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"LS_BULKSQLSINK_accountKey": {
+						"value": "[parameters('LS_BULKSQLSINK_accountKey')]"
+					},
+					"LS_SLQSINK_accountKey": {
+						"value": "[parameters('LS_SLQSINK_accountKey')]"
+					},
+					"ls_ablob_covidreportingsa_connectionString": {
+						"value": "[parameters('ls_ablob_covidreportingsa_connectionString')]"
+					},
+					"ls_adls_covidreportingdl_accountKey": {
+						"value": "[parameters('ls_adls_covidreportingdl_accountKey')]"
+					},
+					"LS_SLQBULKUPLOAD_password": {
+						"value": "[parameters('LS_SLQBULKUPLOAD_password')]"
+					},
+					"ls_Sqlbulkupload_password": {
+						"value": "[parameters('ls_Sqlbulkupload_password')]"
+					},
+					"ls_lookup_password": {
+						"value": "[parameters('ls_lookup_password')]"
+					},
+					"ls_metadata_password": {
+						"value": "[parameters('ls_metadata_password')]"
+					},
+					"ls_sqlsink_accountKey": {
+						"value": "[parameters('ls_sqlsink_accountKey')]"
+					},
+					"ls_sqlupload_password": {
+						"value": "[parameters('ls_sqlupload_password')]"
+					},
+					"LS_BULKSQLSINK_properties_typeProperties_url": {
+						"value": "[parameters('LS_BULKSQLSINK_properties_typeProperties_url')]"
+					},
+					"LS_SLQSINK_properties_typeProperties_url": {
+						"value": "[parameters('LS_SLQSINK_properties_typeProperties_url')]"
+					},
+					"ls_adls_covidreportingdl_properties_typeProperties_url": {
+						"value": "[parameters('ls_adls_covidreportingdl_properties_typeProperties_url')]"
+					},
+					"ls_http_opendata_ecdc_europe_eu_properties_typeProperties_url": {
+						"value": "[parameters('ls_http_opendata_ecdc_europe_eu_properties_typeProperties_url')]"
+					},
+					"LS_SLQBULKUPLOAD_properties_typeProperties_server": {
+						"value": "[parameters('LS_SLQBULKUPLOAD_properties_typeProperties_server')]"
+					},
+					"LS_SLQBULKUPLOAD_properties_typeProperties_database": {
+						"value": "[parameters('LS_SLQBULKUPLOAD_properties_typeProperties_database')]"
+					},
+					"LS_SLQBULKUPLOAD_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SLQBULKUPLOAD_properties_typeProperties_userName')]"
+					},
+					"ls_Sqlbulkupload_properties_typeProperties_server": {
+						"value": "[parameters('ls_Sqlbulkupload_properties_typeProperties_server')]"
+					},
+					"ls_Sqlbulkupload_properties_typeProperties_database": {
+						"value": "[parameters('ls_Sqlbulkupload_properties_typeProperties_database')]"
+					},
+					"ls_Sqlbulkupload_properties_typeProperties_userName": {
+						"value": "[parameters('ls_Sqlbulkupload_properties_typeProperties_userName')]"
+					},
+					"ls_lookup_properties_typeProperties_server": {
+						"value": "[parameters('ls_lookup_properties_typeProperties_server')]"
+					},
+					"ls_lookup_properties_typeProperties_database": {
+						"value": "[parameters('ls_lookup_properties_typeProperties_database')]"
+					},
+					"ls_lookup_properties_typeProperties_userName": {
+						"value": "[parameters('ls_lookup_properties_typeProperties_userName')]"
+					},
+					"ls_metadata_properties_typeProperties_server": {
+						"value": "[parameters('ls_metadata_properties_typeProperties_server')]"
+					},
+					"ls_metadata_properties_typeProperties_database": {
+						"value": "[parameters('ls_metadata_properties_typeProperties_database')]"
+					},
+					"ls_metadata_properties_typeProperties_userName": {
+						"value": "[parameters('ls_metadata_properties_typeProperties_userName')]"
+					},
+					"ls_sqlsink_properties_typeProperties_url": {
+						"value": "[parameters('ls_sqlsink_properties_typeProperties_url')]"
+					},
+					"ls_sqlupload_properties_typeProperties_server": {
+						"value": "[parameters('ls_sqlupload_properties_typeProperties_server')]"
+					},
+					"ls_sqlupload_properties_typeProperties_database": {
+						"value": "[parameters('ls_sqlupload_properties_typeProperties_database')]"
+					},
+					"ls_sqlupload_properties_typeProperties_userName": {
+						"value": "[parameters('ls_sqlupload_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "kreporting-covid-adf_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"tr_ingest_hospital_admissions_data_properties_pl_Ingest_ecdc_data_parameters_sourceRelativeURL": {
+						"value": "[parameters('tr_ingest_hospital_admissions_data_properties_pl_Ingest_ecdc_data_parameters_sourceRelativeURL')]"
+					},
+					"tr_ingest_hospital_admissions_data_properties_pl_Ingest_ecdc_data_parameters_SinkFileNAme": {
+						"value": "[parameters('tr_ingest_hospital_admissions_data_properties_pl_Ingest_ecdc_data_parameters_SinkFileNAme')]"
+					},
+					"tr_ingest_population_data_properties_typeProperties_scope": {
+						"value": "[parameters('tr_ingest_population_data_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'kreporting-covid-adf_ArmTemplate_0')]"
+			]
+		}
+	]
+}
