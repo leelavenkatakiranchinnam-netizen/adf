@@ -1,0 +1,21 @@
+{
+	"name": "LS_SLQBULKUPLOAD",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "ANVR",
+			"database": "AdventureWorks2022",
+			"encrypt": "optional",
+			"trustServerCertificate": true,
+			"authenticationType": "SQL",
+			"userName": "CHLVKIRAN",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJlMzM2Y2U5Ni1lZDNhLTQ3ZGItOTlmZS0wYmM0YTIwZDFiYjciLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "SQLSIR",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
