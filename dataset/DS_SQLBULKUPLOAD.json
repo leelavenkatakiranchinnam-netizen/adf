@@ -1,0 +1,26 @@
+{
+	"name": "DS_SQLBULKUPLOAD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SLQBULKUPLOAD",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"tableName": {
+				"type": "string"
+			},
+			"schemaName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"table": {
+				"value": "@concat(dataset().schemaName, '.', dataset().tableName)\n",
+				"type": "Expression"
+			}
+		}
+	}
+}

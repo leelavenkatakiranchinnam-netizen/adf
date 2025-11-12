@@ -1,0 +1,35 @@
+{
+	"name": "DS_BULKSQLSINK",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_BULKSQLSINK",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"folderpath": {
+				"type": "string"
+			},
+			"filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().folderpath",
+					"type": "Expression"
+				},
+				"fileSystem": "sql"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
