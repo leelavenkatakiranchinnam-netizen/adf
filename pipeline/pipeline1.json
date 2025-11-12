@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": "SELECT \n  TABLE_SCHEMA AS schema_name,\n  TABLE_NAME AS source_table,\n  TABLE_NAME AS target_path\nFROM INFORMATION_SCHEMA.TABLES\nWHERE TABLE_TYPE = 'BASE TABLE'\n  AND TABLE_SCHEMA NOT IN ('sys', 'INFORMATION_SCHEMA')\n",
+						"sqlReaderQuery": "SELECT \n    TABLE_SCHEMA AS schema_name, \n    TABLE_NAME AS source_table, \n    TABLE_NAME AS target_path\nFROM INFORMATION_SCHEMA.TABLES\nWHERE TABLE_TYPE = 'BASE TABLE'\n  AND TABLE_SCHEMA NOT IN ('sys', 'INFORMATION_SCHEMA')\nORDER BY TABLE_SCHEMA, TABLE_NAME\n",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -65,6 +65,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "SqlServerSource",
+									"sqlReaderQuery": {
+										"value": "@concat('SELECT * FROM ', item().schema_name, '.', item().source_table)\n",
+										"type": "Expression"
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
